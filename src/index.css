@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Retrokia';
+  src: url('./fonts/Retrokia Caps Regular.otf') format('opentype')
+}
