@@ -1,36 +1,30 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const StoriesContainer = styled.div`
-  display: flex;
-  align-content: center;
-  background-color: #fff;
-  height: 7.4em;
-
-  @media screen and (max-width: 768px){
-    justify-content: center;
-  }
+export const StoryItemLink = styled(Link)`
+  text-decoration: none;
+  display: contents;
 `
 
-export const StoryContainer = styled.div<{ first: boolean, last: boolean }>`
+export const StoryItemContainer = styled.div<{ first: boolean, last: boolean }>`
   display: flex;
   flex-direction: column;
-  margin: 1em 0.5em;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  margin: 0 0.5em;
 
   ${({ first }) => {
     if (first) return `margin-left: 2em;`;
   }}
 
-${({ last }) => {
+  ${({ last }) => {
     if (last) return `margin-right: 2em;`;
   }}
 `
 
-
-export const StoryProfileContainer = styled.div`
+export const StoryImageContainer = styled.div<{ noContent: boolean }>`
   height: auto;
-  width:60px;
+  width: 60px;
   background: linear-gradient(
   200deg,
   #da3394 25%,
@@ -42,20 +36,35 @@ export const StoryProfileContainer = styled.div`
   border-radius: 50%;
   display: flex;
   justify-content: center;
+
+  ${({ noContent }) => {
+    if (noContent) return `background: #ddd;`
+  }}
 `
 
-export const StoryProfileIcon = styled.img`
+export const StoryItemImage = styled.img<{ noContent: boolean }>`
   display: block;
   border-radius: 50%;
   border: 2px solid #fff;
   display: block;
-  cursor: pointer;
   width: 100%;
   height: auto;
+  background: #FCFCFC;
+  aspect-ratio: 1;
+
+  ${({ noContent }) => {
+    if (noContent) return `border: 2px solid transparent; opacity: 70%;`
+  }}
+`
+
+export const StoryProfileIconContainer = styled.div`
+  width: 100%;
+  height: 100%;
 `
 
 export const StoryAccountName = styled.span`
   font-size: 0.65em;
   margin: 0.4em;
   text-align: center;
+  color: #000;
 `

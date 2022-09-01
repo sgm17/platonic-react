@@ -1,19 +1,19 @@
-import { ReactElement, useRef, useState } from "react";
-import { BrowserRouter as Router, Outlet, Route, Routes } from "react-router-dom";
-import { Navbar } from "./components/appbar/Navbar";
-import { Bottom } from "./components/bottom/Bottom";
-import { Footer } from "./components/footer/Footer";
-import { Homebar } from "./components/homebar/Homebar";
-import { LeafletExample } from "./components/map/LeafletRegister";
-import GlobalStyle from './globalStyles';
-import { Add } from "./pages/Add";
+import { ReactElement, useEffect, useRef, useState } from "react";
+import { BrowserRouter as Router, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { Navbar } from "./components/landingpage/navbar/Navbar";
+import { Footer } from "./components/landingpage/footer/Footer";
+import { AppBar } from "./components/appbar/AppBar";
+import GlobalStyle from './GlobalStyles';
+import { Create } from "./pages/Create";
 import { Chat } from "./pages/Chat";
 import { Home } from "./pages/Home";
-import { Index } from "./pages/Index";
+import { Landing } from "./pages/Landing";
 import { Login } from "./pages/Login";
 import { Meet } from "./pages/Meet";
 import { Profile } from "./pages/Profile";
 import { Register } from "./pages/Register";
+import { Leaflet } from "./components/leaflet/Leaflet";
+import { InstaStory } from "./components/instastory/InstaStory";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
           <Route index element={<AppLayout />} />
           <Route path="signup" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="universities" element={<Leaflet props={{}} search={true} />} />
         </Route>
 
         <Route element={<Outlet />}>
@@ -35,30 +36,22 @@ function App() {
 }
 
 function AppAction() {
-  const [select, setSelect] = useState(0)
+
+  const location = useLocation()
+  const storyPath = location.pathname.includes('/story')
+  const createPath = location.pathname.includes('/create')
+  const story = storyPath || createPath
 
   return <>
+    <AppBar story={story} />
     <Routes>
-      <Route path="add" element={<Add />} />
-      <Route path="/*" element={<HomeLayout select={select} setSelect={setSelect} />} />
-    </Routes>
-  </>
-}
-
-function HomeLayout(props: any) {
-  const { select, setSelect } = props
-  const [popup, setPopup] = useState(false)
-  const [story, setStory] = useState(false)
-
-  return <>
-    {!story && <Homebar select={select} setSelect={setSelect} popup={popup} setPopup={setPopup} />}
-    <Routes>
-      <Route path="home" element={<Home popup={popup} setPopup={setPopup} story={story} setStory={setStory} />} />
+      <Route path="home" element={<Home />} />
+      <Route path="story/:universityId" element={<InstaStory />} />
       <Route path="meet" element={<Meet />} />
+      <Route path="create" element={<Create />} />
       <Route path="chat" element={<Chat />} />
       <Route path="profile" element={<Profile />} />
     </Routes>
-    {!story && <Bottom select={select} setSelect={setSelect} />}
   </>
 }
 
@@ -66,7 +59,7 @@ function AppLayout() {
   return <>
     <Navbar />
     <Routes>
-      <Route index element={<Index />} />
+      <Route index element={<Landing />} />
     </Routes>
     <Footer />
   </>
@@ -74,8 +67,6 @@ function AppLayout() {
 
 export default App;
 
-export type HomeLayoutType = {
-  to: string,
-  fill: ReactElement<any>,
-  outline: ReactElement<any>
+function useRoute() {
+  throw new Error("Function not implemented.");
 }

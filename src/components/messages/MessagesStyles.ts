@@ -23,6 +23,8 @@ export const MessagesContent = styled.div`
     background: #fff;
     border-radius: 6px;
 
+    max-height: 100%;
+
     height: calc(100vh - 60px - 40px);
 
     @media screen and (max-width: 768px){
@@ -54,7 +56,6 @@ export const MessagesChatContent = styled.div<{ messages: boolean }>`
     border-left: 1px solid #DDDDDD;
     width: 100%;
     height: 100%;
-    overflow: auto;
 
     @media screen and (max-width: 768px){
         display: none;

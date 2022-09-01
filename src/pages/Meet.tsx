@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { Preferences } from "../components/preferences/Preferences"
-import { WhatMeet } from "../components/whatmeet/WhatMeet"
-import { WhatMeetSection } from "../components/whatmeet/WhatMeetStyles"
+import { MeetWhat } from "../components/meet/MeetWhat"
 import { AiOutlineLoading } from 'react-icons/ai'
 import { Found } from "../components/found/Found"
+import { Container } from "../GlobalStyles"
 
 export const Meet = () => {
     const [meet, setMeet] = useState(false)
@@ -24,7 +24,7 @@ export const Meet = () => {
         return <Preferences setSearch={setSearch} setFound={setFound} />
     }
 
-    return <WhatMeetSection>
-        <WhatMeet setMeet={setMeet} />
-    </WhatMeetSection>
+    return <Container>
+        <MeetWhat />
+    </Container>
 }

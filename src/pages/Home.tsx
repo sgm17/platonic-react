@@ -1,20 +1,39 @@
-import { useRef } from "react"
-import { HomePopup } from "../components/homepopup/HomePopup"
-import { InstaStories } from "../components/instastories/InstaStories"
-import { MeetBar } from "../components/meetbar/MeetBar"
-import { MeetBarItem } from "../components/meetbar/MeetBarStyles"
-import { Story } from "../components/story/Story"
+import { FC, useEffect } from "react"
+import ClipLoader from "react-spinners/ClipLoader"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { InstaStory } from "../components/instastory/InstaStory"
+import { MeetScroll } from "../components/meet/MeetScroll"
+import { StoryScroll } from "../components/story/StoryScroll"
+import { retrieveMeets, selectMeetsStateLoading } from "../features/meet/meetSlice"
+import { retrieveInitial, retrieveStories, selectStoriesStateLoading } from "../features/story/storySlice"
+import { Container } from "../GlobalStyles"
 
-export const Home = (props: any) => {
-    const { popup, setPopup, story, setStory } = props
-    const homeRef = useRef(null)
+const myId = 1
 
-    if (story)
-        return <InstaStories />
+export const Home = () => {
 
-    return <div ref={homeRef} style={{ padding: '60px 0' }}>
-        <Story story={story} setStory={setStory} />
-        <MeetBar />
-        {popup && <HomePopup />}
-    </div>
+    const dispatch = useAppDispatch()
+
+    const storiesLoading = useAppSelector(selectStoriesStateLoading)
+    const meetsLoading = useAppSelector(selectMeetsStateLoading)
+
+    useEffect(() => {
+        dispatch(retrieveInitial())
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(retrieveMeets(myId))
+    }, [dispatch])
+
+
+
+    if (storiesLoading && meetsLoading)
+        return <div style={{ height: '100vh', width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+            <ClipLoader loading={storiesLoading && meetsLoading} color='#000' size={'150px'} />
+        </div>
+
+    return <Container extraPaddingTop={'2em'}>
+        <StoryScroll />
+        <MeetScroll />
+    </Container>
 }

@@ -1,13 +1,12 @@
 import { PreferencesArrowDown, PreferencesContainer, PreferencesContent, PreferencesHeader, PreferencesImage, PreferencesPopup, PreferencesPopupBody, PreferencesPopupClose, PreferencesPopupTable, PreferencesPopupTableElement, PreferencesPopupTableHeader, PreferencesPopupTableRow, PreferencesSection, PreferencesSelect, PreferencesSelectionContainer, PreferencesSelectionText, PreferencesSelectText, PreferencesSexContainer, PreferencesSexPopup, PreferencesSexText, PreferencesStart, PrefernecesSubheader } from "./PreferencesStyles"
 import { MdExpandMore } from 'react-icons/md'
 import { useState } from "react"
-import final from '../../final.json'
 import { AiOutlineClose } from 'react-icons/ai'
 
 export const Preferences = (props: any) => {
     const { setSearch, setFound } = props
 
-    const [area, setArea] = useState(final[0])
+    const [area, setArea] = useState(/* final[0] */)
     const [sex, setSex] = useState<string>('woman')
 
     const [areaPopup, setAreaPopup] = useState(false)
@@ -36,7 +35,7 @@ export const Preferences = (props: any) => {
     function AreaPopupContainer() {
 
         function handleClick(index: number) {
-            setArea(final[index])
+            /* setArea(final[index]) */
             setAreaPopup(false)
         }
 
@@ -49,7 +48,7 @@ export const Preferences = (props: any) => {
                     <PreferencesPopupTableHeader>
                         area
                     </PreferencesPopupTableHeader>
-                    {final.map((university, i) => {
+                    {/* {final.map((university, i) => {
                         return <PreferencesPopupTableRow onClick={() => handleClick(i)} key={i}>
                             {university.parentName &&
                                 <PreferencesPopupTableElement>
@@ -59,7 +58,7 @@ export const Preferences = (props: any) => {
                                 {university.name}
                             </PreferencesPopupTableElement>
                         </PreferencesPopupTableRow>
-                    })}
+                    })} */}
                 </PreferencesPopupTable>
                 <PreferencesPopupClose>
                     <AiOutlineClose
@@ -98,7 +97,7 @@ export const Preferences = (props: any) => {
                     </PreferencesSelectionText>
                     <PreferencesSelect>
                         <PreferencesSelectText>
-                            {area.name}
+                            {/*  {area.name} */}
                         </PreferencesSelectText>
                         <PreferencesArrowDown>
                             <MdExpandMore size={'30px'} color={'#000'} />

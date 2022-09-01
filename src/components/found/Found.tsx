@@ -1,4 +1,3 @@
-import { MeetBarI } from "../meetbar/MeetBar"
 import { FoundBody, FoundContainer, FoundTextContainer, FoundTitle, FoundWrapper } from "./FoundStyles"
 
 export const Found = () => {
@@ -15,7 +14,7 @@ export const Found = () => {
                     start meeting her, but before an advise: talk respektfully and be original
                 </FoundBody>
             </FoundTextContainer>
-            {MeetBarI(0, false, false)}
+            {/*MeetCard(0, false, false)*/}
         </FoundContainer>
     </FoundWrapper>
 }

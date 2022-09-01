@@ -1,0 +1,82 @@
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { LogoText } from "../../GlobalStyles";
+
+export const AppbarContainer = styled.header<{ story: boolean }>`
+    position: fixed;
+    width: 100%;
+    height: 3.75rem;
+    background-color: #fff;
+    z-index: 10;
+
+    ${({ story }) => {
+        if (story) {
+            return `background-color: #000;
+                    position:relative;
+                    top:0;
+                    z-index:1;
+                    
+                    @media screen and (max-width: 768px){
+                        display: none;
+                    }`
+        } else {
+            return `
+                -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.3);
+                -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.3);
+                box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.3);
+            `
+        }
+    }}
+`
+
+export const AppbarItemsContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+    padding: 0 2rem;
+    width: 100%;
+
+    @media screen and (max-width: 768px) {
+        display: flex;
+        grid-gap: 1rem;
+        padding: 0 1rem;
+    }
+`
+
+export const LogoTextAppbar = styled(LogoText)`
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+`
+
+export const NavigationContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 0;
+    height: 100%;
+    width: 30%;
+    align-items: center;
+
+    @media screen and (max-width: 768px){
+        display: none;
+}
+`
+
+export const NavigationLink = styled(Link)`
+    text-decoration: none;
+    color: #000;
+`
+
+export const NavigationProfile = styled.div`
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #000;
+`
+
+export const NavigationItem = styled.div`
+    height: 30px;
+    width: 30px;
+`
