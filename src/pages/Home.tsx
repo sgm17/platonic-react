@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react"
 import ClipLoader from "react-spinners/ClipLoader"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { InstaStory } from "../components/instastory/InstaStory"
 import { MeetScroll } from "../components/meet/MeetScroll"
 import { StoryScroll } from "../components/story/StoryScroll"
 import { retrieveMeets, selectMeetsStateLoading } from "../features/meet/meetSlice"
@@ -24,7 +23,6 @@ export const Home = () => {
     useEffect(() => {
         dispatch(retrieveMeets(myId))
     }, [dispatch])
-
 
 
     if (storiesLoading && meetsLoading)

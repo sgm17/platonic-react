@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { AiOutlineEye } from "react-icons/ai"
 import { MdKeyboardArrowUp, MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md"
 import { Action } from "react-insta-stories/dist/interfaces"
-import { myId } from "./InstaStory"
+import { myId } from "./InstaStoryUniversity"
 import { InstaStorySeeMoreCollapsed, InstaStorySeeMoreCollapsedContainer, InstaStorySeeMoreCollapsedText, InstaStorySeeMoreCollapsedFavourite, InstaStorySeeMoreCollapsedOwner, InstaStorySeeMoreCollapsedOwnerItemContainer, InstaStorySeeMoreCollapsedOwnerIcon, InstaStorySeeMoreCollapsedOwnerText } from "./InstaStoryStyles"
 
 type InstaSeeMoreCollapsedProperties = {

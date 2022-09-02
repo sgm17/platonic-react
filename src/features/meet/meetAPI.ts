@@ -1,8 +1,15 @@
+import { PreferencesType } from "../../components/meet/MeetPreferences";
 import { Meet } from "../../ts/interfaces/MeetItem";
 
 export function fetchMeets(userId: number) {
     return new Promise<{ data: Meet[] }>((resolve) => {
         setTimeout(() => resolve({ data: meets }), 1000);
+    })
+}
+
+export function createSearch(preferences: PreferencesType) {
+    return new Promise((resolve, reject) => {
+        return
     })
 }
 

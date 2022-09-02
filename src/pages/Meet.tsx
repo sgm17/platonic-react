@@ -1,30 +1,52 @@
-import { useState } from "react"
-import { Preferences } from "../components/preferences/Preferences"
+import { useEffect, useState } from "react"
+import { Preferences } from "../components/meet/MeetPreferences"
 import { MeetWhat } from "../components/meet/MeetWhat"
-import { AiOutlineLoading } from 'react-icons/ai'
 import { Found } from "../components/found/Found"
 import { Container } from "../GlobalStyles"
+import { ClipLoader } from "react-spinners"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { myId } from "../components/instastory/InstaStoryUniversity"
+import { retrieveMeets, selectMeetsStateNoData, selectMeetsStateLoading, selectMeetsStateSearching, selectMeets } from "../features/meet/meetSlice"
+import { MeetCard } from "../components/meet/MeetCard"
+
+export type MeetWhatProperties = {
+    setPreferences: Function
+}
+
+export type PreferencesProperties = {
+    setPreferences: Function
+}
 
 export const Meet = () => {
-    const [meet, setMeet] = useState(false)
-    const [search, setSearch] = useState(false)
-    const [found, setFound] = useState(false)
+    const dispatch = useAppDispatch()
+    const [preferences, setPreferences] = useState(false)
 
-    if (search) {
-        return <div style={{ width: '100%', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <AiOutlineLoading size={'50px'} />
+    useEffect(() => {
+        dispatch(retrieveMeets(myId))
+    }, [dispatch])
+
+    const nodata = useAppSelector(selectMeetsStateNoData)
+    const loading = useAppSelector(selectMeetsStateLoading)
+    const searching = useAppSelector(selectMeetsStateSearching)
+    const meets = useAppSelector(selectMeets)
+    const active = meets.find((meet) => meet.endsAt > Date.now())
+
+    if (loading)
+        return <div style={{ height: '100vh', width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+            <ClipLoader loading={loading} color='#000' size={'150px'} />
         </div>
+
+    if (searching)
+        return <div>searching</div>
+
+    if (nodata)
+        return <Container>
+            <MeetWhat setPreferences={setPreferences} />
+        </Container>
+
+    if (active === undefined || preferences === true) {
+        return <Preferences setPreferences={setPreferences} />
     }
 
-    if (found) {
-        return <Found />
-    }
-
-    if (meet) {
-        return <Preferences setSearch={setSearch} setFound={setFound} />
-    }
-
-    return <Container>
-        <MeetWhat />
-    </Container>
+    return <MeetCard meet={active} />
 }

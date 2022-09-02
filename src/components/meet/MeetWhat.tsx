@@ -1,17 +1,14 @@
 import { useAnimation } from "framer-motion"
-import { useEffect, } from "react"
+import { FC, useEffect, } from "react"
 import { MeetWhatBody, MeetWhatContainer, MeetWhatHeader, WhatMeetImage, MeetWhatImagesContainer, MeetWhatButton, MeetWhatSubheader, MeetWhatVerticalImagesContainer, MeetWhatContent, WhatMeetImageContainer } from "./MeetWhatStyles"
 import { useInView } from "react-intersection-observer"
 import flirt1 from '../../assets/images/flirt1.jpg'
 import flirt2 from '../../assets/images/flirt2.jpg'
 import flirt3 from '../../assets/images/flirt3.jpg'
-import { useAppDispatch } from "../../app/hooks"
-import { retrieveMeets } from "../../features/meet/meetSlice"
-import { myId } from "../instastory/InstaStory"
+import { MeetWhatProperties } from "../../pages/Meet"
 
-export const MeetWhat = () => {
+export const MeetWhat: FC<MeetWhatProperties> = ({ setPreferences }) => {
     const animation = useAnimation()
-    const dispatch = useAppDispatch()
 
     const { ref, inView } = useInView({ threshold: 0.2 })
 
@@ -23,10 +20,9 @@ export const MeetWhat = () => {
         }
     }, [inView, animation])
 
-
-    useEffect(() => {
-        dispatch(retrieveMeets(myId))
-    }, [dispatch])
+    const handleClick = () => {
+        setPreferences(true)
+    }
 
     return <MeetWhatContainer ref={ref}>
         <MeetWhatContent
@@ -38,7 +34,7 @@ export const MeetWhat = () => {
             <MeetWhatBody>get to know the other person beyond their physique for 2 days. discover
                 who studies, their tastes and ambitions. you will start with a point
                 in common: you will both study at the same university.</MeetWhatBody>
-            <MeetWhatButton>start meeting</MeetWhatButton>
+            <MeetWhatButton onClick={handleClick}>start meeting</MeetWhatButton>
         </MeetWhatContent>
         <MeetWhatImagesContainer
             initial={{ x: 40, opacity: 0 }}

@@ -13,7 +13,7 @@ import { Meet } from "./pages/Meet";
 import { Profile } from "./pages/Profile";
 import { Register } from "./pages/Register";
 import { Leaflet } from "./components/leaflet/Leaflet";
-import { InstaStory } from "./components/instastory/InstaStory";
+import { InstaStory } from "./pages/InstaStory";
 
 function App() {
   return (

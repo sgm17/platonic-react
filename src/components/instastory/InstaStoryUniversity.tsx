@@ -1,13 +1,9 @@
 import { FC, useEffect, useState } from 'react';
-import { InstaStoryContainer, InstaStoryLoadingContainer, InstaStoryUniversityContainer } from './InstaStoryStyles';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { retrieveStories, selectLastStoryIdsPerUniversity, selectStories, selectStoriesCreated, selectStoriesStateIdle, selectStoriesStateLoading, selectStoriesStateNoData, selectUniversity } from '../../features/story/storySlice';
+import { InstaStoryUniversityContainer } from './InstaStoryStyles';
 import Stories from 'react-insta-stories'
-import { useNavigate, useParams } from 'react-router-dom';
 import { maskUniversitiesWithContentToSeeByTheUser, nextUniversityId } from '../story/StoryScroll';
 import { HomeStory, LastStoryIdsPerUniversity } from '../../ts/interfaces/Story'
 import { myLatestStoriesIds } from '../../features/story/storyAPI';
-import { ClipLoader } from 'react-spinners'
 import { InstaSeeMore } from './InstaSeeMore';
 import { InstaSeeMoreCollapsed } from './InstaSeeMoreCollapsed';
 import { InstaStoryItem } from './InstaStoryItem';
@@ -88,50 +84,4 @@ export const InstaStoryUniversity: FC<InstaStoryUniversity> = ({ actualUniversit
 
         />
     </InstaStoryUniversityContainer>
-}
-
-export const InstaStory = () => {
-    const { universityId } = useParams()
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate();
-
-    var initialUniversityId = Number(universityId)
-
-    const [actualUniversityId, setActualUniversityId] = useState<number>(universityId !== undefined ? (isNaN(initialUniversityId) ? -1 : initialUniversityId) : -1)
-
-    const loading = useAppSelector(selectStoriesStateLoading)
-    const idle = useAppSelector(selectStoriesStateIdle)
-    const created = useAppSelector(selectStoriesCreated)
-    const nodata = useAppSelector(selectStoriesStateNoData)
-    const lastStoryIdsPerUniversity = useAppSelector(selectLastStoryIdsPerUniversity)
-    const stories = useAppSelector(selectStories)
-    const university = useAppSelector(selectUniversity)
-
-    if (actualUniversityId === -1) navigate('/home', { replace: true })
-
-    useEffect(() => {
-        dispatch(retrieveStories(actualUniversityId))
-    }, [dispatch, actualUniversityId])
-
-
-    if (loading || idle)
-        return <InstaStoryLoadingContainer>
-            <ClipLoader loading={loading} color='#fff' size={'150px'} />
-        </InstaStoryLoadingContainer>
-
-    if (nodata)
-        return <p style={{ paddingTop: '60px', color: '#000' }}>no data lol</p>
-
-
-    return <InstaStoryContainer>
-        <InstaStoryUniversity
-            actualUniversityId={actualUniversityId}
-            homeStory={{
-                lastStoryIdsPerUniversity: lastStoryIdsPerUniversity,
-                stories: stories,
-                university: university
-            }}
-            setActualUniversityId={setActualUniversityId}
-        />
-    </InstaStoryContainer>
 }
