@@ -52,7 +52,7 @@ export const InstaStoryWithHeader: FC<InstaStoryWithHeaderProperties> = ({ story
                     <BsPause size={'30px'} color={'#fff'} onClick={handleClick} style={{ cursor: 'pointer' }} />}
             </InstaStoryHeaderControll>
             <InstaStoryHeaderControll paddingLeft="5px" >
-                {isMe && <MdOutlineReportGmailerrorred size={'25px'} color={'#fff'} style={{ cursor: 'pointer' }} />}
+                {!isMe && <MdOutlineReportGmailerrorred size={'25px'} color={'#fff'} style={{ cursor: 'pointer' }} />}
             </InstaStoryHeaderControll>
         </InstaStoryHeaderControllContainer>
     </InstaStoryHeaderContainer>

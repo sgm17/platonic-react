@@ -1,13 +1,15 @@
-import { FC, useEffect, useState } from "react"
+import { Component, FC, useEffect, useState } from "react"
+import { StyledComponent } from "styled-components"
 import { MeetCountdownText } from "./MeetStyles"
 
 type CountdownProperties = {
     endsAt: number,
     setActive: Function,
-    messagesCount: number
+    messagesCount: number,
+    MeetTextComponent: StyledComponent<"p", any, {}, never>
 }
 
-export const MeetCountdown: FC<CountdownProperties> = ({ endsAt, setActive, messagesCount }) => {
+export const MeetCountdown: FC<CountdownProperties> = ({ endsAt, setActive, messagesCount, MeetTextComponent }) => {
     const [difference, setDifference] = useState(endsAt - Date.now())
 
     const days = Math.floor(difference / (1000 * 60 * 60 * 24))
@@ -28,9 +30,9 @@ export const MeetCountdown: FC<CountdownProperties> = ({ endsAt, setActive, mess
         return () => { clearInterval(timer) }
     }, [difference])
 
-    return <MeetCountdownText>
+    return <MeetTextComponent>
         {active ?
             `the meet ends in ${days.toTimeDigit()}:${hours.toTimeDigit()}:${minutes.toTimeDigit()}:${seconds.toTimeDigit()}` :
             `the meet has ended with ${messagesCount} ${messagesCount <= 1 ? 'message' : 'messages'}`}
-    </MeetCountdownText>
+    </MeetTextComponent>
 }

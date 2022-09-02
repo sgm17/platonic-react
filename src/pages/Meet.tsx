@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { myId } from "../components/instastory/InstaStoryUniversity"
 import { retrieveMeets, selectMeetsStateNoData, selectMeetsStateLoading, selectMeetsStateSearching, selectMeets } from "../features/meet/meetSlice"
 import { MeetCard } from "../components/meet/MeetCard"
+import { Loading } from "../components/loading/Loading"
 
 export type MeetWhatProperties = {
     setPreferences: Function
@@ -32,9 +33,7 @@ export const Meet = () => {
     const active = meets.find((meet) => meet.endsAt > Date.now())
 
     if (loading)
-        return <div style={{ height: '100vh', width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
-            <ClipLoader loading={loading} color='#000' size={'150px'} />
-        </div>
+        return <Loading loading={loading} />
 
     if (searching)
         return <div>searching</div>

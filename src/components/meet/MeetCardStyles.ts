@@ -9,6 +9,8 @@ export const MeetCardContainer = styled(Container)`
     justify-content: start;
     flex-direction: column;
     align-items: center;
+
+    touch-action: pan-x pan-y;
 `
 
 export const MeetCardHeader = styled.h1`
@@ -102,44 +104,66 @@ export const MeetCardImage = styled.img`
 export const MeetCardBodyContainer = styled.div`
     width: 100%;
     height: 100%;
+    max-height: calc(.7 * 325px - 2rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    @media screen and (max-width: 768px) {
+        max-height: calc(450px * .7 - 2rem);
+        padding-top: 2rem;
+    }
+
+    @media screen and (min-width: 1200px) {
+        max-height: calc(450px * .7 - 2rem);
+        padding-top: 2rem;
+    }
+`
+
+export const MeetCardBodyGrid = styled.div`
+    width: 100%;
+    height: 100%;
     display: grid;
-    grid-template-rows: 2fr 2fr 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
 
     grid-gap: 1rem;
 
     @media screen and (max-width: 768px) {
-        margin-top: 86px;
+        grid-template-rows: repeat(5,1fr);
+        grid-gap: 1.5rem;
     }
-
-    @media screen and (min-width: 1200px){
-        margin-top: 86px;
-    }
-`
-
-export const MeetCardButtonContainer = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 `
 
 export const MeetCardButton = styled(Button)`
-    padding: .6rem 1.5rem;
+    padding: .6rem 2.5rem;
     font-size: .7rem;
     background-color: #3F4254;  
 
     &:hover {
-     
         background-color: #9B9B9B;
     }
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        padding: 0.75rem 0;
+        font-size: 0.75rem;
+    }
+`
+
+export const MeetCardTitleContainer = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 20;
 `
 
 export const MeetCardUsername = styled.p`
     font-weight: bold;
     font-size: 1.7rem;
     color: #000;
-    text-align: center;
+    text-align: left;
 `
 
 export const MeetCardUniversityContainer = styled.span`
@@ -147,15 +171,25 @@ export const MeetCardUniversityContainer = styled.span`
     flex-direction: column;
     color: #3F4254;
     font-weight: 500;
-    text-align: center;
+    text-align: left;
 `
 
 export const MeetCardUniversityText = styled.p`
-    font-size: 1.25rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+
+    @media screen and (max-width: 768px){
+        font-size: .9rem;
+    }
 `
 
 export const MeetCardFacultyText = styled.p`
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    @media screen and (max-width: 768px){
+        font-size: .85rem;
+    }
 `
 
 export const MeetCardDatesContainer = styled.span`
@@ -165,12 +199,20 @@ export const MeetCardDatesContainer = styled.span`
 `
 
 export const MeetCardDates = styled.p`
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+
+    @media screen and (max-width: 768px){
+        font-size: .85rem;
+    }
 `
 
 export const MeetCardCountdown = styled.p`
-    font-size: 1.1rem;
-    color: #3F4254;
     font-weight: 500;
+    color: #3F4254;
     text-align: left;
+    font-size: 1.2rem;
+
+    @media screen and (max-width: 768px){
+        font-size: .85rem;
+    }
 `

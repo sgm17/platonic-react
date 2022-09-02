@@ -1,4 +1,4 @@
-import { MeetBodyContainer, MeetChat, MeetChatContainer, MeetChatLink, MeetImageContainer, MeetItemContainer, MeetItemImage, MeetItemDates, MeetItemUsername, MeetTextContainer, MeetUniversityContainer, MeetUniversityText } from "./MeetStyles"
+import { MeetBodyContainer, MeetChat, MeetChatContainer, MeetChatLink, MeetImageContainer, MeetItemContainer, MeetItemImage, MeetItemDates, MeetItemUsername, MeetTextContainer, MeetUniversityContainer, MeetUniversityText, MeetCountdownText } from "./MeetStyles"
 import { FC, useState } from "react"
 import { Meet } from "../../ts/interfaces/MeetItem"
 import { MeetCountdown } from "./MeetCountdown"
@@ -21,7 +21,7 @@ export const MeetItem: FC<MeetItemProperties> = ({ first, last, meet }) => {
             </MeetUniversityContainer>
             <MeetTextContainer>
                 <MeetItemDate started={meet.startedAt} ends={meet.endsAt} active={active} />
-                <MeetCountdown endsAt={meet.endsAt} setActive={setActive} messagesCount={meet.messagesCount} />
+                <MeetCountdown MeetTextComponent={MeetCountdownText} endsAt={meet.endsAt} setActive={setActive} messagesCount={meet.messagesCount} />
             </MeetTextContainer>
             <MeetChatContainer>
                 <MeetChatLink to={'/chat'}>

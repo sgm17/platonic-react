@@ -4,6 +4,7 @@ import { ClipLoader } from "react-spinners";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { InstaStoryLoadingContainer, InstaStoryContainer } from "../components/instastory/InstaStoryStyles";
 import { InstaStoryUniversity } from "../components/instastory/InstaStoryUniversity";
+import { Loading } from "../components/loading/Loading";
 import { selectStoriesStateLoading, selectStoriesStateIdle, selectStoriesCreated, selectStoriesStateNoData, selectLastStoryIdsPerUniversity, selectStories, selectUniversity, retrieveStories } from "../features/story/storySlice";
 
 export const InstaStory = () => {
@@ -31,9 +32,7 @@ export const InstaStory = () => {
 
 
     if (loading || idle)
-        return <InstaStoryLoadingContainer>
-            <ClipLoader loading={loading} color='#fff' size={'150px'} />
-        </InstaStoryLoadingContainer>
+        return <Loading color="#fff" loading={loading || idle} backgroundColor="#000" />
 
     if (nodata)
         return <p style={{ paddingTop: '60px', color: '#000' }}>no data lol</p>

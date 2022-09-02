@@ -1,10 +1,10 @@
-import { FC, useEffect } from "react"
-import ClipLoader from "react-spinners/ClipLoader"
+import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { Loading } from "../components/loading/Loading"
 import { MeetScroll } from "../components/meet/MeetScroll"
 import { StoryScroll } from "../components/story/StoryScroll"
 import { retrieveMeets, selectMeetsStateLoading } from "../features/meet/meetSlice"
-import { retrieveInitial, retrieveStories, selectStoriesStateLoading } from "../features/story/storySlice"
+import { retrieveInitial, selectStoriesStateLoading } from "../features/story/storySlice"
 import { Container } from "../GlobalStyles"
 
 const myId = 1
@@ -26,9 +26,7 @@ export const Home = () => {
 
 
     if (storiesLoading && meetsLoading)
-        return <div style={{ height: '100vh', width: '100%', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
-            <ClipLoader loading={storiesLoading && meetsLoading} color='#000' size={'150px'} />
-        </div>
+        return <Loading loading={storiesLoading && meetsLoading} />
 
     return <Container extraPaddingTop={'2em'}>
         <StoryScroll />
