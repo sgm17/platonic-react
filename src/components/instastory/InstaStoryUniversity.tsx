@@ -1,24 +1,23 @@
 import { FC, useEffect, useState } from 'react';
 import { InstaStoryUniversityContainer } from './InstaStoryStyles';
 import Stories from 'react-insta-stories'
-import { maskUniversitiesWithContentToSeeByTheUser, nextUniversityId } from '../story/StoryScroll';
+import { maskUniversitiesWithContentToSeeByTheUser } from '../story/StoryScroll';
 import { HomeStory, LastStoryIdsPerUniversity } from '../../ts/interfaces/Story'
-import { myLatestStoriesIds } from '../../features/story/storyAPI';
 import { InstaSeeMore } from './InstaSeeMore';
 import { InstaSeeMoreCollapsed } from './InstaSeeMoreCollapsed';
 import { InstaStoryItem } from './InstaStoryItem';
+import { University } from '../../ts/interfaces/University';
 
 type InstaStoryUniversity = {
     actualUniversityId: number,
     homeStory: HomeStory,
-    setActualUniversityId: Function
+    setActualUniversityId: Function,
+    orderedUniversities: University[],
+    myLatestStoriesIds: LastStoryIdsPerUniversity[],
+    myId: number
 }
 
-export const myId = 1
-export const myUniversityId = 35
-
-
-export const InstaStoryUniversity: FC<InstaStoryUniversity> = ({ actualUniversityId, homeStory, setActualUniversityId }) => {
+export const InstaStoryUniversity: FC<InstaStoryUniversity> = ({ actualUniversityId, homeStory, setActualUniversityId, orderedUniversities, myLatestStoriesIds, myId }) => {
     const [width, setWidth] = useState<number>(window.innerWidth)
     const isMobile = width <= 768
 
@@ -60,7 +59,7 @@ export const InstaStoryUniversity: FC<InstaStoryUniversity> = ({ actualUniversit
             }}
             onAllStoriesEnd={(s: any, st: any) => {
                 const maskedActiveContent = maskUniversitiesWithContentToSeeByTheUser(myLastUniversitiesPerId, homeStory.lastStoryIdsPerUniversity, actualUniversityId)
-                const nextUniId = nextUniversityId(actualUniversityId, maskedActiveContent)
+                const nextUniId = nextUniversityId(actualUniversityId, maskedActiveContent, orderedUniversities)
 
                 setActualUniversityId(nextUniId)
             }}
@@ -70,8 +69,8 @@ export const InstaStoryUniversity: FC<InstaStoryUniversity> = ({ actualUniversit
                     const { university } = homeStory
 
                     return {
-                        content: (props) => <InstaStoryItem props={props} universityStory={story} university={university} />,
-                        seeMoreCollapsed: ({ toggleMore, action }) => <InstaSeeMoreCollapsed action={action} toggleMore={toggleMore} storyUserId={story.userId} />,
+                        content: (props) => <InstaStoryItem props={props} universityStory={story} university={university} myId={myId} />,
+                        seeMoreCollapsed: ({ toggleMore, action }) => <InstaSeeMoreCollapsed action={action} toggleMore={toggleMore} storyUserId={story.userId} myId={myId} />,
                         seeMore: () => <InstaSeeMore />,
                         header: {
                             heading: `${story.username} ${timestamp.getDate().toTimeDigit()}/${timestamp.getMonth().toTimeDigit()} ${timestamp.getHours().toTimeDigit()}:${timestamp.getMinutes().toTimeDigit()}`,
@@ -84,4 +83,18 @@ export const InstaStoryUniversity: FC<InstaStoryUniversity> = ({ actualUniversit
 
         />
     </InstaStoryUniversityContainer>
+}
+
+const nextUniversityId = (
+    actualUniversityId: number,
+    maskedUniversityWithContent: number[],
+    orderedUniversities: University[]) => {
+
+    if (!maskedUniversityWithContent.includes(actualUniversityId)) return -1 // a university with all seen)
+
+    const actualUniversityIndex = orderedUniversities.findIndex(({ id }) => id === actualUniversityId)
+
+    return orderedUniversities.find((university, index) => {
+        return index > actualUniversityIndex && maskedUniversityWithContent.includes(university.id)
+    })?.id ?? -1
 }

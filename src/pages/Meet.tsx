@@ -1,31 +1,24 @@
-import { useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { Preferences } from "../components/meet/MeetPreferences"
 import { MeetWhat } from "../components/meet/MeetWhat"
-import { Found } from "../components/found/Found"
 import { Container } from "../GlobalStyles"
-import { ClipLoader } from "react-spinners"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { myId } from "../components/instastory/InstaStoryUniversity"
 import { retrieveMeets, selectMeetsStateNoData, selectMeetsStateLoading, selectMeetsStateSearching, selectMeets } from "../features/meet/meetSlice"
 import { MeetCard } from "../components/meet/MeetCard"
 import { Loading } from "../components/loading/Loading"
-
-export type MeetWhatProperties = {
-    setPreferences: Function
-}
-
-export type PreferencesProperties = {
-    setPreferences: Function
-}
+import { selectOrderedUniversities, selectProfile } from "../features/user/userSlice"
 
 export const Meet = () => {
     const dispatch = useAppDispatch()
     const [preferences, setPreferences] = useState(false)
 
+    const myId = useAppSelector(selectProfile)?.id
+
     useEffect(() => {
-        dispatch(retrieveMeets(myId))
+        dispatch(retrieveMeets(myId!))
     }, [dispatch])
 
+    const orderedUniversities = useAppSelector(selectOrderedUniversities)
     const nodata = useAppSelector(selectMeetsStateNoData)
     const loading = useAppSelector(selectMeetsStateLoading)
     const searching = useAppSelector(selectMeetsStateSearching)
@@ -44,7 +37,7 @@ export const Meet = () => {
         </Container>
 
     if (active === undefined || preferences === true) {
-        return <Preferences setPreferences={setPreferences} />
+        return <Preferences setPreferences={setPreferences} orderedUniversities={orderedUniversities} />
     }
 
     return <MeetCard meet={active} />

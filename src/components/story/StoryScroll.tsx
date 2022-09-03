@@ -1,29 +1,8 @@
 import { Scroll } from "../scroll/Scroll";
 import { University } from "../../ts/interfaces/University";
-import { sortUniversityStories } from '../leaflet/Leaflet'
 import { StoryItem } from "./StoryItem";
 import { LastStoryIdsPerUniversity } from "../../ts/interfaces/Story";
-
-
-export const userUniversityCenter = [41.50613010080779, 2.103939945863225]
-
-export const orderedUniversities: University[] = sortUniversityStories({
-    userUniversity: userUniversityCenter,
-})
-
-export const nextUniversityId = (
-    actualUniversityId: number,
-    maskedUniversityWithContent: number[]) => {
-
-
-    if (!maskedUniversityWithContent.includes(actualUniversityId)) return -1 // a university with all seen)
-
-    const actualUniversityIndex = orderedUniversities.findIndex(({ id }) => id === actualUniversityId)
-
-    return orderedUniversities.find((university, index) => {
-        return index > actualUniversityIndex && maskedUniversityWithContent.includes(university.id)
-    })?.id ?? -1
-}
+import { FC } from "react";
 
 export const maskUniversitiesWithContentToSeeByTheUser = (myLastStoryIdsPerUniversity: LastStoryIdsPerUniversity[], apiLastStoryIdsPerUniversity: LastStoryIdsPerUniversity[], actualUniversityId?: number) => {
     const condition = apiLastStoryIdsPerUniversity.filter(({ lastStoryIdPerUniversity, universityId }) => {
@@ -37,7 +16,16 @@ export const maskUniversitiesWithContentToSeeByTheUser = (myLastStoryIdsPerUnive
     return condition.map((last) => last.universityId)
 }
 
-export const StoryScroll = () => {
+type StoryScrollPoperties = {
+    orderedUniversities: University[],
+    myLatestStoriesIds: LastStoryIdsPerUniversity[],
+    apiLatestStoriesIds: LastStoryIdsPerUniversity[]
+}
+
+export const StoryScroll: FC<StoryScrollPoperties> = ({ orderedUniversities, myLatestStoriesIds, apiLatestStoriesIds }) => {
+
+    const maskedUniversitiesWithContentToSeeByTheUser = maskUniversitiesWithContentToSeeByTheUser(myLatestStoriesIds, apiLatestStoriesIds)
+
     return (
         <Scroll height={'7.4em'}>
             {orderedUniversities.map((university, i) => {
@@ -47,7 +35,9 @@ export const StoryScroll = () => {
                 return <StoryItem
                     university={university}
                     first={first}
-                    last={last} />
+                    last={last}
+                    maskedUniversitiesWithContentToSeeByTheUser={maskedUniversitiesWithContentToSeeByTheUser}
+                />
             })}
         </Scroll>
     )

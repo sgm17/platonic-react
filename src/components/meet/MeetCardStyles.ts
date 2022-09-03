@@ -9,7 +9,6 @@ export const MeetCardContainer = styled(Container)`
     justify-content: start;
     flex-direction: column;
     align-items: center;
-
     touch-action: pan-x pan-y;
 `
 

@@ -27,8 +27,6 @@ export const AppBar: FC<AppBarProperties> = ({ story }) => {
         setPage(appbarState.to)
     }, [location])
 
-    console.log(story)
-
     return <AppbarContainer story={story}>
         <AppbarItemsContainer>
             <LogoContainer>
@@ -42,7 +40,11 @@ export const AppBar: FC<AppBarProperties> = ({ story }) => {
                     {appBarItems.map((item, i) => {
                         return <AppbarNavigationItem key={i}>
                             <AppbarNavigationLink to={item.to}>
-                                {page === item.to ? item.fill : item.outline}
+                                {item.to !== AppbarState.profile
+                                    ? page === item.to ? item.fill : item.outline
+                                    : <AppbarProfileImageContainer page={page === AppbarState.profile}>
+                                        <AppbarProfileImage alt="" src="https://avatarfiles.alphacoders.com/165/thumb-165945.jpg" />
+                                    </AppbarProfileImageContainer>}
                             </AppbarNavigationLink>
                         </AppbarNavigationItem>
                     })}
@@ -54,8 +56,8 @@ export const AppBar: FC<AppBarProperties> = ({ story }) => {
 
 export type AppbarItemType = {
     to: AppbarState,
-    fill: ReactElement,
-    outline: ReactElement
+    fill?: ReactElement,
+    outline?: ReactElement
 }
 
 const appBarItems: AppbarItemType[] = [
@@ -73,18 +75,13 @@ const appBarItems: AppbarItemType[] = [
         to: AppbarState.meet,
         fill: <MdOutlineFavorite />,
         outline: <MdOutlineFavoriteBorder />,
-    }, {
+    },
+    {
         to: AppbarState.chat,
         fill: <AiFillMessage />,
         outline: <AiOutlineMessage />
     },
     {
-        to: AppbarState.profile,
-        fill: <AppbarProfileImageContainer>
-            <AppbarProfileImage alt="" src="https://avatarfiles.alphacoders.com/165/thumb-165945.jpg" />
-        </AppbarProfileImageContainer>,
-        outline: <AppbarProfileImageContainer>
-            <AppbarProfileImage alt="" src="https://avatarfiles.alphacoders.com/165/thumb-165945.jpg" />
-        </AppbarProfileImageContainer>
+        to: AppbarState.profile
     }
 ]

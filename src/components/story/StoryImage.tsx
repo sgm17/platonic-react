@@ -66,24 +66,17 @@ import upf from '../../assets/images/uni/upf_logo.png'
 import urv from '../../assets/images/uni/urv_logo.png'
 import uvic from '../../assets/images/uni/uvic_logo.jpeg';
 import { UniversityImage } from "../../ts/enums/UniversityImage";
-import { useAppSelector } from "../../app/hooks";
-import { maskUniversitiesWithContentToSeeByTheUser } from "./StoryScroll";
-import { myLatestStoriesIds } from "../../features/story/storyAPI";
-import { selectLastStoryIdsPerUniversity } from "../../features/story/storySlice";
 
 type StoryImageProperties = {
     university: University,
+    maskedUniversitiesWithContentToSeeByTheUser: number[]
 }
 
-export const StoryImage: FC<StoryImageProperties> = ({ university }) => {
+export const StoryImage: FC<StoryImageProperties> = ({ university, maskedUniversitiesWithContentToSeeByTheUser }) => {
     const { image } = university
     const profileImage = getUniversityImage(image)
 
-    const apiLatestStoriesIds = useAppSelector(selectLastStoryIdsPerUniversity)
-
-    const stories = maskUniversitiesWithContentToSeeByTheUser(myLatestStoriesIds, apiLatestStoriesIds)
-
-    const noContent = !stories.includes(university.id)
+    const noContent = !maskedUniversitiesWithContentToSeeByTheUser.includes(university.id)
 
     return <StoryImageContainer noContent={noContent}>
         <StoryItemImage alt='' src={profileImage} noContent={noContent} />

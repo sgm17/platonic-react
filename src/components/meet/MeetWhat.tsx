@@ -5,7 +5,10 @@ import { useInView } from "react-intersection-observer"
 import flirt1 from '../../assets/images/flirt1.jpg'
 import flirt2 from '../../assets/images/flirt2.jpg'
 import flirt3 from '../../assets/images/flirt3.jpg'
-import { MeetWhatProperties } from "../../pages/Meet"
+
+export type MeetWhatProperties = {
+    setPreferences: Function
+}
 
 export const MeetWhat: FC<MeetWhatProperties> = ({ setPreferences }) => {
     const animation = useAnimation()

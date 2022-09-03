@@ -1,4 +1,3 @@
-import { ReactElement, useEffect, useRef, useState } from "react";
 import { BrowserRouter as Router, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Navbar } from "./components/landingpage/navbar/Navbar";
 import { Footer } from "./components/landingpage/footer/Footer";
@@ -14,8 +13,18 @@ import { Profile } from "./pages/Profile";
 import { Register } from "./pages/Register";
 import { Leaflet } from "./components/leaflet/Leaflet";
 import { InstaStory } from "./pages/InstaStory";
+import { useEffect } from "react";
+import { useAppDispatch } from "./app/hooks";
+import { retrieveProfile } from "./features/user/userSlice";
 
 function App() {
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(retrieveProfile('xd'))
+  }, [dispatch])
+
   return (
     <Router>
       <GlobalStyle />
@@ -66,7 +75,3 @@ function AppLayout() {
 }
 
 export default App;
-
-function useRoute() {
-  throw new Error("Function not implemented.");
-}

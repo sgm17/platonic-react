@@ -4,12 +4,15 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../app/hooks";
 import { createStory } from "../../features/story/storySlice";
-import { myId, myUniversityId } from "../instastory/InstaStoryUniversity";
 
 const backgroundColor = ['blue', 'red', 'green', 'orange', 'pink', 'olive', 'teal', 'violet', 'purple', 'gray', 'brown', 'cyan']
 
+type AddItemProperties = {
+    myId: number,
+    myUniversityId: number
+}
 
-export const AddItem = () => {
+export const AddItem: FC<AddItemProperties> = ({ myId, myUniversityId }) => {
     const [select, setSelect] = useState(0)
     const [text, setText] = useState('')
     const navigate = useNavigate();

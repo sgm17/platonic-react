@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { LogoLink, LogoText } from "../../GlobalStyles";
+import { LogoText } from "../../GlobalStyles";
 
 export const AppbarContainer = styled.header<{ story: boolean }>`
     position: fixed;
@@ -92,7 +92,7 @@ export const AppbarNavigationLink = styled(Link)`
     color: #000;
 `
 
-export const AppbarProfileImageContainer = styled.div`
+export const AppbarProfileImageContainer = styled.div<{ page: boolean }>`
     height: 30px;
     width: 30px;
     border-radius: 50%;
@@ -102,6 +102,10 @@ export const AppbarProfileImageContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    ${({ page }) => {
+        if (page) return 'padding: 0;';
+    }}
 `
 
 export const AppbarProfileImage = styled.img`

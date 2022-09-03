@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { BsPause, BsPlayFill } from "react-icons/bs";
-import { WithHeader, WithSeeMore } from "react-insta-stories";
+import { WithSeeMore } from "react-insta-stories";
 import { Action, Story } from "react-insta-stories/dist/interfaces";
 import { Story as UniversityStory } from "../../ts/interfaces/Story";
 import { University } from "../../ts/interfaces/University";
@@ -22,19 +21,21 @@ type InstaStoryItemProperties = {
         }
     },
     universityStory: UniversityStory,
-    university?: University
+    university?: University,
+    myId: number
 }
 
 type NumberOrString = number | string
 
 
-export const InstaStoryItem: FC<InstaStoryItemProperties> = ({ props, universityStory, university }) => {
+export const InstaStoryItem: FC<InstaStoryItemProperties> = ({ props, universityStory, university, myId }) => {
     return <>
         <InstaStoryWithHeader
             story={universityStory}
             university={university}
             action={props.action}
-            isPaused={props.isPaused} />
+            isPaused={props.isPaused}
+            myId={myId} />
         <InstaStoryItemBackground background={universityStory.backgroundColor}>
             <InstaStoryItemBody>{universityStory.body}</InstaStoryItemBody>
         </InstaStoryItemBackground>

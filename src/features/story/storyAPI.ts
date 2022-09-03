@@ -50,13 +50,6 @@ export function postStory(story: PostStory) {
     })
 }
 
-export const myLatestStoriesIds: LastStoryIdsPerUniversity[] = [
-    {
-        universityId: 35,
-        lastStoryIdPerUniversity: 4
-    }]
-
-
 type CustomApi = {
     university: University,
     stories: Story[]

@@ -3,11 +3,16 @@ export interface User {
     username: string,
     profileImage?: string,
     sex: Sex,
-    lastTimeOnline: string,
+    lastTimeOnline: number,
     universityId: number,
-    universityParentName: string,
+    universityParentName?: string,
     universityName: string,
-    universityAcronym: string
+    universityFaculty?: string
+    universityAcronym?: string
+    likesGiven: number,
+    repliesGiven: number,
+    totalChats: number,
+    center: number[]
 }
 
 type Sex = "male" | "female"

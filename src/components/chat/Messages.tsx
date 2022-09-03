@@ -9,69 +9,63 @@ import { Chat } from "../../ts/interfaces/Chat"
 import { Input } from "./Input"
 import { InputContainer } from "./InputStyles"
 
-export const Messages = () => {
+export const ChatItem = () => {
     const myId = 1
     const myUsername = 'sergigarciiaa'
 
     const chats = useAppSelector(selectChats)
     const dispatch = useAppDispatch()
 
-    const [active, setActive] = useState<Chat>()
-
-    useEffect(() => {
-        dispatch(retrieveChats(myId))
-    }, [dispatch])
-
-    function ChatContainerMessaging(chat: Chat) {
-        return <InputContainer>
-            <BubbleOtherUser>
-                <UserReturn onClick={() => setActive(undefined)}>
-                    <AiOutlineLeft color="#000" size={'20px'} />
-                </UserReturn>
-                <BubbleOtherImage alt="" src={chat.profileImage} />
-                <MessageChatUserName padding={'1rem'}>{chat.username}</MessageChatUserName>
-                <UserStatus>
-                    <UserStatusCircle />
-                    <UserStatusText>online</UserStatusText>
-                </UserStatus>
-            </BubbleOtherUser>
-            <ChatContainingMessages>
-                <ChatContainer>
-                    <ChatContainerDivided>
-                        {chat.messages.map((c, i) => {
-                            const sender = c.from === myId
-                            const pastMe = i > 0 && i < chat.messages.length - 1 ? chat.messages[i - 1].from === myId : false
-
-                            if (!sender) {
-                                return <BubbleWrapper me={sender} pastMe={pastMe}>
-                                    <BubbleOtherUserWrapper>
-                                        <BubbleOtherUserImage alt="" src={chat.profileImage} />
-                                        <Bubble me={sender}>
-                                            <BubbleText me={sender}>{c.body}</BubbleText>
-                                            <BubbleTimeText>{`${new Date(c.timestamp).getHours()}:${new Date(c.timestamp).getMinutes()}`}</BubbleTimeText>
-                                        </Bubble>
-                                    </BubbleOtherUserWrapper>
-                                </BubbleWrapper>
-                            }
-
-                            return <BubbleOther>
-                                <BubbleWrapper me={sender} pastMe={pastMe}>
-                                    <Bubble me={sender}>
-                                        <BubbleText me={sender}>{c.body}</BubbleText>
-                                        <BubbleTimeText>{`${new Date(c.timestamp).getHours()}:${new Date(c.timestamp).getMinutes()}`}</BubbleTimeText>
-                                    </Bubble>
-                                    <BubbleRead>
-                                        <BubbleDoubleCheck alt="" src="images/double-check.png" />
-                                    </BubbleRead>
-                                </BubbleWrapper>
-
-                            </BubbleOther>
-                        })}
-                    </ChatContainerDivided>
-                </ChatContainer>
-            </ChatContainingMessages>
-        </InputContainer>
-    }
+    /*   function ChatContainerMessaging(chat: Chat) {
+          return <InputContainer>
+              <BubbleOtherUser>
+                  <UserReturn onClick={() => setActive(undefined)}>
+                      <AiOutlineLeft color="#000" size={'20px'} />
+                  </UserReturn>
+                  <BubbleOtherImage alt="" src={chat.profileImage} />
+                  <MessageChatUserName padding={'1rem'}>{chat.username}</MessageChatUserName>
+                  <UserStatus>
+                      <UserStatusCircle />
+                      <UserStatusText>online</UserStatusText>
+                  </UserStatus>
+              </BubbleOtherUser>
+              <ChatContainingMessages>
+                  <ChatContainer>
+                      <ChatContainerDivided>
+                          {chat.messages.map((c, i) => {
+                              const sender = c.from === myId
+                              const pastMe = i > 0 && i < chat.messages.length - 1 ? chat.messages[i - 1].from === myId : false
+  
+                              if (!sender) {
+                                  return <BubbleWrapper me={sender} pastMe={pastMe}>
+                                      <BubbleOtherUserWrapper>
+                                          <BubbleOtherUserImage alt="" src={chat.profileImage} />
+                                          <Bubble me={sender}>
+                                              <BubbleText me={sender}>{c.body}</BubbleText>
+                                              <BubbleTimeText>{`${new Date(c.timestamp).getHours()}:${new Date(c.timestamp).getMinutes()}`}</BubbleTimeText>
+                                          </Bubble>
+                                      </BubbleOtherUserWrapper>
+                                  </BubbleWrapper>
+                              }
+  
+                              return <BubbleOther>
+                                  <BubbleWrapper me={sender} pastMe={pastMe}>
+                                      <Bubble me={sender}>
+                                          <BubbleText me={sender}>{c.body}</BubbleText>
+                                          <BubbleTimeText>{`${new Date(c.timestamp).getHours()}:${new Date(c.timestamp).getMinutes()}`}</BubbleTimeText>
+                                      </Bubble>
+                                      <BubbleRead>
+                                          <BubbleDoubleCheck alt="" src="images/double-check.png" />
+                                      </BubbleRead>
+                                  </BubbleWrapper>
+  
+                              </BubbleOther>
+                          })}
+                      </ChatContainerDivided>
+                  </ChatContainer>
+              </ChatContainingMessages>
+          </InputContainer>
+      } */
 
     return <MessagesWrapper>
         <MessagesContainer>
@@ -82,7 +76,7 @@ export const Messages = () => {
                     </MessagesChatUser>
                     {chats.map((chat, i) => {
                         const lastMessage = chat.messages[chat.messages.length - 1]
-                        return <MessagesConversation onClick={() => setActive(chats[i])} key={i}>
+                        return <MessagesConversation /* onClick={() => setActive(chats[i])} */ key={i}>
                             <MessageChatConversationImage alt="" src={chat.profileImage} />
                             <MessageChatConversationColumn>
                                 <MessageChatConversationText>
@@ -102,7 +96,7 @@ export const Messages = () => {
                     })}
                 </MessageAllUsers>
                 <MessagesChatContent messages={chats !== undefined}>
-                    {!active ?
+                    {/*   {!active ?
                         <MessageChatEmptyContainer>
                             <MessageChatEmptyCircle>
                                 <RiSendPlaneFill size={'70px'} color={'#000'} />
@@ -117,7 +111,7 @@ export const Messages = () => {
                             profileImage={active.profileImage}
                             lastTime={active.lastTime}
                             messages={active.messages}
-                        />}
+                        />} */}
                 </MessagesChatContent>
             </MessagesContent>
         </MessagesContainer>

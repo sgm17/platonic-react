@@ -1,6 +1,5 @@
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { retrieveMeets, selectMeets } from "../../features/meet/meetSlice"
+import { useAppSelector } from "../../app/hooks"
+import { selectMeets } from "../../features/meet/meetSlice"
 import { Scroll } from "../scroll/Scroll"
 import { MeetItem } from "./MeetItem"
 

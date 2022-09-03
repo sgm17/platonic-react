@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { InstaStoryLoadingContainer, InstaStoryContainer } from "../components/instastory/InstaStoryStyles";
+import { InstaStoryContainer } from "../components/instastory/InstaStoryStyles";
 import { InstaStoryUniversity } from "../components/instastory/InstaStoryUniversity";
 import { Loading } from "../components/loading/Loading";
 import { selectStoriesStateLoading, selectStoriesStateIdle, selectStoriesCreated, selectStoriesStateNoData, selectLastStoryIdsPerUniversity, selectStories, selectUniversity, retrieveStories } from "../features/story/storySlice";
+import { selectMyLastStoryIdsPerUniversity, selectOrderedUniversities, selectProfile } from "../features/user/userSlice";
 
 export const InstaStory = () => {
     const { universityId } = useParams()
@@ -18,11 +18,14 @@ export const InstaStory = () => {
 
     const loading = useAppSelector(selectStoriesStateLoading)
     const idle = useAppSelector(selectStoriesStateIdle)
-    const created = useAppSelector(selectStoriesCreated)
     const nodata = useAppSelector(selectStoriesStateNoData)
     const lastStoryIdsPerUniversity = useAppSelector(selectLastStoryIdsPerUniversity)
     const stories = useAppSelector(selectStories)
     const university = useAppSelector(selectUniversity)
+
+    const myId = useAppSelector(selectProfile)?.id
+    const orderedUniversities = useAppSelector(selectOrderedUniversities)
+    const myLatestStoriesId = useAppSelector(selectMyLastStoryIdsPerUniversity)
 
     if (actualUniversityId === -1) navigate('/home', { replace: true })
 
@@ -47,6 +50,9 @@ export const InstaStory = () => {
                 university: university
             }}
             setActualUniversityId={setActualUniversityId}
+            orderedUniversities={orderedUniversities}
+            myLatestStoriesIds={myLatestStoriesId}
+            myId={myId!}
         />
     </InstaStoryContainer>
 }

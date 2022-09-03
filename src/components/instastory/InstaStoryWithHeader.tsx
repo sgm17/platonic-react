@@ -5,16 +5,16 @@ import { Story } from "../../ts/interfaces/Story"
 import { University } from "../../ts/interfaces/University"
 import { InstaStoryHeaderContainer, InstaStoryHeaderContent, InstaStoryHeaderControll, InstaStoryHeaderControllContainer, InstaStoryHeaderImage, InstaStoryHeaderImageBorder, InstaStoryHeaderImageContainer, InstaStoryHeaderText, InstaStoryHeaderTextContainer, InstaStoryHeaderTextLink } from "./InstaStoryStyles"
 import { MdOutlineReportGmailerrorred } from 'react-icons/md'
-import { myId } from "./InstaStoryUniversity"
 
 type InstaStoryWithHeaderProperties = {
     story: Story,
     university?: University,
     action: Action,
-    isPaused: boolean
+    isPaused: boolean,
+    myId: number
 }
 
-export const InstaStoryWithHeader: FC<InstaStoryWithHeaderProperties> = ({ story, university, action, isPaused }) => {
+export const InstaStoryWithHeader: FC<InstaStoryWithHeaderProperties> = ({ story, university, action, isPaused, myId }) => {
 
     const timestamp = new Date(story.createdAt)
 

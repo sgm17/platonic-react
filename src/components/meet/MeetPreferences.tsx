@@ -1,29 +1,23 @@
 import { PreferenceImageContainer, PreferencesContainer, PreferencesContent, PreferencesHeader, PreferencesImage, PreferencesStart, PrefernecesSubheader } from "./MeetPreferencesStyles"
 import preferences from '../../assets/images/meet.jpg'
 import { FC, useCallback, useState } from "react"
-import { orderedUniversities } from "../story/StoryScroll"
 import Select, { ActionMeta } from 'react-select'
 import { University } from "../../ts/interfaces/University"
 import { useAppDispatch } from "../../app/hooks"
 import { postSearching } from "../../features/meet/meetSlice"
-import { PreferencesProperties } from "../../pages/Meet"
-
 
 enum Sex { woman = "woman", man = "man" }
+
+export type PreferencesProperties = {
+    setPreferences: Function,
+    orderedUniversities: University[]
+}
+
 
 const sexOptions = [
     { value: 0, label: 'woman' },
     { value: 1, label: 'man' }
 ]
-
-const universityOptions: OptionType[] = orderedUniversities.map(({ id, parentName, name, acronym }) => {
-    const label = parentName !== undefined ? `${parentName} ${acronym !== undefined ? `(${acronym}), ` : ', '} ${name}` : `${name} ${acronym !== undefined ? `(${acronym})` : ''}`
-
-    return {
-        value: id,
-        label: label
-    }
-})
 
 export type PreferencesType = {
     university: University,
@@ -35,7 +29,16 @@ type OptionType = {
     label: string
 }
 
-export const Preferences: FC<PreferencesProperties> = ({ setPreferences }) => {
+export const Preferences: FC<PreferencesProperties> = ({ setPreferences, orderedUniversities }) => {
+
+    const universityOptions: OptionType[] = orderedUniversities.map(({ id, parentName, name, acronym }) => {
+        const label = parentName !== undefined ? `${parentName} ${acronym !== undefined ? `(${acronym}), ` : ', '} ${name}` : `${name} ${acronym !== undefined ? `(${acronym})` : ''}`
+
+        return {
+            value: id,
+            label: label
+        }
+    })
 
     const [university, setUniversity] = useState<OptionType>()
     const [sex, setSex] = useState<OptionType>()

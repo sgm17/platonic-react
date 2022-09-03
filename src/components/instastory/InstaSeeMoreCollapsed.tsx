@@ -2,16 +2,16 @@ import { FC, useState } from "react"
 import { AiOutlineEye } from "react-icons/ai"
 import { MdKeyboardArrowUp, MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md"
 import { Action } from "react-insta-stories/dist/interfaces"
-import { myId } from "./InstaStoryUniversity"
 import { InstaStorySeeMoreCollapsed, InstaStorySeeMoreCollapsedContainer, InstaStorySeeMoreCollapsedText, InstaStorySeeMoreCollapsedFavourite, InstaStorySeeMoreCollapsedOwner, InstaStorySeeMoreCollapsedOwnerItemContainer, InstaStorySeeMoreCollapsedOwnerIcon, InstaStorySeeMoreCollapsedOwnerText } from "./InstaStoryStyles"
 
 type InstaSeeMoreCollapsedProperties = {
     action: Action
     toggleMore: (show: boolean) => void,
-    storyUserId: number
+    storyUserId: number,
+    myId: number
 }
 
-export const InstaSeeMoreCollapsed: FC<InstaSeeMoreCollapsedProperties> = ({ toggleMore, action, storyUserId }) => {
+export const InstaSeeMoreCollapsed: FC<InstaSeeMoreCollapsedProperties> = ({ toggleMore, action, storyUserId, myId }) => {
     const [favourite, setFavourite] = useState(false)
     const isMe = myId === storyUserId
 
