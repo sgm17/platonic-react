@@ -279,3 +279,18 @@ export const InstaStorySeeMoreCollapsedOwnerText = styled.p`
     -webkit-user-select: none;
     -o-user-select: none;
 `
+
+export const InstaEmptyContainer = styled.div`
+    height: calc(100vh - 60px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+`
+
+export const InstaEmptyText = styled.p`
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+`

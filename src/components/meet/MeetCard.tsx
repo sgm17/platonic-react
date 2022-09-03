@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react"
-import { Meet } from "../../ts/interfaces/MeetItem"
+import { Meet } from "../../ts/interfaces/Meet"
 import { MeetCardBodyContainer, MeetCardBodyGrid, MeetCardButton, MeetCardContainer, MeetCardContent, MeetCardContentContainer, MeetCardCountdown, MeetCardDates, MeetCardDatesContainer, MeetCardFacultyText, MeetCardHeader, MeetCardHeaderContainer, MeetCardImage, MeetCardImageContainer, MeetCardTitleContainer, MeetCardUniversityContainer, MeetCardUniversityText, MeetCardUsername } from "./MeetCardStyles"
 import { MeetCountdown } from "./MeetCountdown"
 

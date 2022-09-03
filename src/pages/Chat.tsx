@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { ChatItem } from "../components/chat/Messages"
-import { retrieveChats, selectChats } from "../features/chat/chatSlice"
+import { ChatItem } from "../components/chat/ChatItem"
+import { Loading } from "../components/loading/Loading"
+import { retrieveChats, selectStateChatsLoading } from "../features/chat/chatSlice"
 import { selectProfile } from "../features/user/userSlice"
-import { Chat as ChatType } from "../ts/interfaces/Chat"
 
 export const Chat = () => {
-    const { index } = useParams()
     const dispatch = useAppDispatch()
 
     const myId = useAppSelector(selectProfile)?.id
-
-    const chats = useAppSelector(selectChats)
-    const [chatIndex, setChatIndex] = useState<ChatType>()
+    const loading = useAppSelector(selectStateChatsLoading)
 
     useEffect(() => {
         dispatch(retrieveChats(myId!))
     }, [dispatch])
+
+
+    if (loading)
+        return <Loading loading={loading} />
 
     return <ChatItem />
 }

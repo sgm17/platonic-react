@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { PreferencesType } from "../../components/meet/MeetPreferences";
-import { Meet } from "../../ts/interfaces/MeetItem";
+import { Meet } from "../../ts/interfaces/Meet";
 import { createSearch, fetchMeets } from "./meetAPI";
 
 interface MeetState {

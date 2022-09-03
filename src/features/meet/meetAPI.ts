@@ -1,5 +1,5 @@
 import { PreferencesType } from "../../components/meet/MeetPreferences";
-import { Meet } from "../../ts/interfaces/MeetItem";
+import { Meet } from "../../ts/interfaces/Meet";
 
 export function fetchMeets(userId: number) {
     return new Promise<{ data: Meet[] }>((resolve) => {

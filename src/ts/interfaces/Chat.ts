@@ -1,12 +1,16 @@
+import { Meet } from "./Meet"
+import { Story } from "./Story"
+import { User } from "./User"
+
 export interface Chat {
-    username: string,
+    from: number,
     to: number,
-    profileImage: string,
-    lastTime: string,
-    messages: Message[]
+    toUser: User
+    messages: Message[],
+    action: Action
 }
 
-interface Message {
+export interface Message {
     id: number,
     from: number,
     to: number,
@@ -14,3 +18,5 @@ interface Message {
     read: boolean | null
     timestamp: number
 }
+
+export type Action = Story | Meet

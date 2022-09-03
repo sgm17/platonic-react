@@ -43,5 +43,6 @@ export const chatSlice = createSlice({
 })
 
 export const selectChats = (state: RootState) => state.chats.chats
+export const selectStateChatsLoading = (state: RootState) => state.chats.status === 'loading'
 
 export default chatSlice.reducer

@@ -3,6 +3,7 @@ export interface User {
     username: string,
     profileImage?: string,
     sex: Sex,
+    online: boolean,
     lastTimeOnline: number,
     universityId: number,
     universityParentName?: string,

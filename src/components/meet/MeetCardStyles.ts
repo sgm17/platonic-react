@@ -131,6 +131,14 @@ export const MeetCardBodyGrid = styled.div`
         grid-template-rows: repeat(5,1fr);
         grid-gap: 1.5rem;
     }
+
+    @media screen and (min-width: 768px){
+        grid-gap: 0.3rem;
+    }
+
+    @media screen and (min-width: 1200px){
+        grid-gap: 1.75rem;
+    }
 `
 
 export const MeetCardButton = styled(Button)`
@@ -163,6 +171,14 @@ export const MeetCardUsername = styled.p`
     font-size: 1.7rem;
     color: #000;
     text-align: left;
+
+    @media screen and (min-width: 768px){
+        font-size: 1.4rem;
+    }
+
+    @media screen and (min-width: 1200px){
+        font-size: 2rem;
+    }
 `
 
 export const MeetCardUniversityContainer = styled.span`
@@ -180,6 +196,14 @@ export const MeetCardUniversityText = styled.p`
     @media screen and (max-width: 768px){
         font-size: .9rem;
     }
+
+    @media screen and (min-width: 768px){
+        font-size: .9rem;
+    }
+
+    @media screen and (min-width: 1200px){
+        font-size: 1.5rem;
+    }
 `
 
 export const MeetCardFacultyText = styled.p`
@@ -188,6 +212,14 @@ export const MeetCardFacultyText = styled.p`
 
     @media screen and (max-width: 768px){
         font-size: .85rem;
+    }
+
+    @media screen and (min-width: 768px){
+        font-size: 0.85rem;
+    }
+
+    @media screen and (min-width: 1200px){
+        font-size: 1.3rem;
     }
 `
 
@@ -203,6 +235,14 @@ export const MeetCardDates = styled.p`
     @media screen and (max-width: 768px){
         font-size: .85rem;
     }
+
+    @media screen and (min-width: 768px){
+        font-size: 0.85rem;
+    }
+
+    @media screen and (min-width: 1200px){
+        font-size: 1.3rem;
+    }
 `
 
 export const MeetCardCountdown = styled.p`
@@ -213,5 +253,13 @@ export const MeetCardCountdown = styled.p`
 
     @media screen and (max-width: 768px){
         font-size: .85rem;
+    }
+
+    @media screen and (min-width: 768px){
+        font-size: 0.85rem;
+    }
+
+    @media screen and (min-width: 1200px){
+        font-size: 1.3rem;
     }
 `

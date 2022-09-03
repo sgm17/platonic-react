@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { InstaEmpty } from "../components/instastory/InstaEmpty";
 import { InstaStoryContainer } from "../components/instastory/InstaStoryStyles";
 import { InstaStoryUniversity } from "../components/instastory/InstaStoryUniversity";
 import { Loading } from "../components/loading/Loading";
@@ -38,7 +39,7 @@ export const InstaStory = () => {
         return <Loading color="#fff" loading={loading || idle} backgroundColor="#000" />
 
     if (nodata)
-        return <p style={{ paddingTop: '60px', color: '#000' }}>no data lol</p>
+        return <InstaEmpty />
 
 
     return <InstaStoryContainer>

@@ -1,6 +1,6 @@
 import { MeetBodyContainer, MeetChat, MeetChatContainer, MeetChatLink, MeetImageContainer, MeetItemContainer, MeetItemImage, MeetItemDates, MeetItemUsername, MeetTextContainer, MeetUniversityContainer, MeetUniversityText, MeetCountdownText } from "./MeetStyles"
 import { FC, useState } from "react"
-import { Meet } from "../../ts/interfaces/MeetItem"
+import { Meet } from "../../ts/interfaces/Meet"
 import { MeetCountdown } from "./MeetCountdown"
 import '../../ts/extensions/NumberExtension'
 import { MeetItemDate } from "./MeetItemDate"

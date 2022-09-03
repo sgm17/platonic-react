@@ -21,6 +21,7 @@ const user: User = {
     likesGiven: 100,
     repliesGiven: 200,
     totalChats: 300,
+    online: true,
     center: [
         41.50613010080779,
         2.103939945863225
