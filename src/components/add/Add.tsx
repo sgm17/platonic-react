@@ -1,11 +1,11 @@
 import { AddContainer, AddBackground } from "./AddStyles"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { AddItem } from "./AddItem"
 import { useAppSelector } from "../../app/hooks"
 import { selectStoriesCreated, selectStoriesStateLoading } from "../../features/story/storySlice"
-import ClipLoader from "react-spinners/ClipLoader"
 import { Loading } from "../loading/Loading"
 import { selectProfile } from "../../features/user/userSlice"
+import { AddCreated } from "./AddCreated"
 
 export const Add = () => {
 
@@ -29,7 +29,7 @@ export const Add = () => {
         return <Loading loading={loading} />
 
     if (created)
-        return <p style={{ fontWeight: '2rem' }}>CREATED LOL!</p>
+        return <AddCreated />
 
     return <AddContainer>
         <AddItem myId={myId!} myUniversityId={myUniversityId!} />

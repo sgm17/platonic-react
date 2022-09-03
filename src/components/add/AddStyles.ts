@@ -182,3 +182,18 @@ export const CreateButton = styled.button`
 
     cursor: pointer;
 `
+
+export const AddCreatedContainer = styled.div`
+    height: calc(100vh - 60px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+`
+
+export const AddCreatedText = styled.p`
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+`

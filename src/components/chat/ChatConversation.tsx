@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { AiOutlineLeft } from "react-icons/ai"
-import { Chat, Message } from "../../ts/interfaces/Chat"
+import { Chat } from "../../ts/interfaces/Chat"
 import { ChatBubble } from "./ChatBubble"
 import { ChatMessagesContainer, ChatConversationContainer, ChatConversationOtherUserContainer, ChatConversationReturnContainer, ChatConversationUsername, ChatConversationOtherUserImage, ChatConversationOtherUserStatusContainer, ChantConversationOtherUserStatusCircle, ChatConversationOtherUserStatusText, ChatMessagesContent, ChatMessagesWrapper, ChatDateText } from "./ChatConversationStyles"
 import { ChatInput } from "./ChatInput"
@@ -37,9 +37,9 @@ export const ChatConversation: FC<ChatConversationProperties> = ({ chat, myId, s
                         const actualMessageDate = new Date(message.timestamp)
 
                         const isNewDate = pastMessageDate ?
-                            pastMessageDate.getFullYear() != actualMessageDate.getFullYear() ||
-                            pastMessageDate.getMonth() != actualMessageDate.getMonth() ||
-                            pastMessageDate.getDate() != actualMessageDate.getDate()
+                            pastMessageDate.getFullYear() !== actualMessageDate.getFullYear() ||
+                            pastMessageDate.getMonth() !== actualMessageDate.getMonth() ||
+                            pastMessageDate.getDate() !== actualMessageDate.getDate()
                             : false
 
                         const newDate = new Date(message.timestamp)
