@@ -24,7 +24,7 @@ import eshob from '../../assets/images/uni/eshob_logo.jpg'
 import esic from '../../assets/images/uni/esic_logo.jpg'
 import escrbcc from '../../assets/images/uni/escrbcc_logo.jpg'
 import esrp from '../../assets/images/uni/esrp_logo.jpg'
-import medite from '../../assets/images/uni/mediterrani_logo.png'
+import mediterrani from '../../assets/images/uni/mediterrani_logo.png'
 import eufb from '../../assets/images/uni/eufb_logo.png'
 import euht from '../../assets/images/uni/euht_logo.jpg'
 import eui from '../../assets/images/uni/eui_logo.png'
@@ -120,7 +120,7 @@ const getUniversityImage = (name: string) => {
         case UniversityImage.euht: return euht
         case UniversityImage.eram: return eram
         case UniversityImage.eufb: return eufb
-        case UniversityImage.mediterrani: return medite
+        case UniversityImage.mediterrani: return mediterrani
         case UniversityImage.blanquerna: return blanquerna
         case UniversityImage.iqs: return iqs
         case UniversityImage.lasalle: return lasalle

@@ -5,10 +5,8 @@ import { MeetScroll } from "../components/meet/MeetScroll"
 import { StoryScroll } from "../components/story/StoryScroll"
 import { retrieveMeets, selectMeetsStateLoading } from "../features/meet/meetSlice"
 import { retrieveInitial, selectLastStoryIdsPerUniversity, selectStoriesStateLoading } from "../features/story/storySlice"
-import { selectMyLastStoryIdsPerUniversity, selectOrderedUniversities } from "../features/user/userSlice"
+import { selectMyLastStoryIdsPerUniversity, selectOrderedUniversities, selectProfile } from "../features/user/userSlice"
 import { Container } from "../GlobalStyles"
-
-const myId = 1
 
 export const Home = () => {
 
@@ -16,6 +14,7 @@ export const Home = () => {
 
     const storiesLoading = useAppSelector(selectStoriesStateLoading)
     const meetsLoading = useAppSelector(selectMeetsStateLoading)
+    const myId = useAppSelector(selectProfile)!.id
 
     useEffect(() => {
         dispatch(retrieveInitial())

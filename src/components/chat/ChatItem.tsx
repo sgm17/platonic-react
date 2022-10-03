@@ -30,7 +30,6 @@ export const ChatItem = () => {
         setActiveChat(index !== undefined ? chats[index] : undefined)
     }
 
-    const isMobile = false
 
     return <ChatItemContainer>
         <ChatItemPadding>

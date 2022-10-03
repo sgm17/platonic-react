@@ -2,7 +2,6 @@ import { StoryImage } from './StoryImage';
 import { StoryAccountName, StoryItemContainer, StoryItemLink } from "./StoryStyles"
 import { FC } from 'react';
 import { University } from '../../ts/interfaces/University';
-import { LastStoryIdsPerUniversity } from '../../ts/interfaces/Story';
 
 export const StoryItem: FC<StoryItemProperties> = ({ first, last, university, maskedUniversitiesWithContentToSeeByTheUser }) => {
     return <StoryItemLink to={`/story/${university.id}`}>
